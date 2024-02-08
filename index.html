@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Blur and sizing</title>
+</head>
+<body>
+    <h2>Update CSS variables with <span class="js">Javascript</span></h2>
+    <div class="container">
+        <label for="spacing">Spacing:</label>
+        <input type="range" id="spacing" name="spacing" min="10" max="100" data-sizing="px" value="10">   
+     
+   <label for="blur">Blur:</label>
+  <input type="range" id="blur" name="blur" min="0" max="50" data-sizing="px" value="10">
+ 
+  <label for="basecolor">Base Color:</label>
+  <input type="color" id="basecolor" name="base" value="#ffc600">
+ 
+</div>
+<img src="sabiha.jpg" alt="">
+
+
+
+<script>
+    const inputs = document.querySelectorAll(".container input");
+
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || "";
+      document.documentElement.style.setProperty(
+        `--${this.name}`,
+        this.value + suffix
+      );
+    }
+
+    inputs.forEach((input) => input.addEventListener("change", handleUpdate));
+    inputs.forEach((input) =>
+      input.addEventListener("mousemove", handleUpdate)
+    );
+  </script>
+</body>
+</html>
